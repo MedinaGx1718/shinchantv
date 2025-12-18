@@ -1,0 +1,254 @@
+/* VARIABLES y ESTILOS GENERALES */
+:root {
+    --color-bg-dark: #181818; /* Fondo muy oscuro, como 9anime */
+    --color-bg-light: #2c2c2c; /* Fondo de contenedores y cards */
+    --color-text-light: #f0f0f0; /* Texto claro */
+    --color-accent: #FFC107; /* Amarillo de Shin-chan (acento principal) */
+    --color-secondary-accent: #e91e63; /* Rosa/Rojo para botones clave */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--color-text-light);
+}
+
+/* --- HEADER (BARRA SUPERIOR) --- */
+.main-header {
+    background-color: var(--color-bg-light);
+    padding: 15px 30px;
+    border-bottom: 2px solid var(--color-accent); /* Línea de acento */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8em;
+    color: var(--color-text-light);
+    letter-spacing: 1px;
+}
+
+.nav-menu .nav-item {
+    margin-left: 25px;
+    font-weight: 700;
+    color: var(--color-text-light);
+}
+
+.nav-menu .active {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 5px;
+}
+
+/* --- CONTENIDO PRINCIPAL Y FILTROS --- */
+.content-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.filters-bar h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--color-secondary-accent);
+    padding-left: 10px;
+}
+
+.season-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-bg-light);
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--color-secondary-accent);
+    border-color: var(--color-secondary-accent);
+}
+
+/* --- CUADRÍCULA DE EPISODIOS --- */
+.episode-grid {
+    display: grid;
+    /* Cuadrícula responsive: 4 columnas en desktop, se ajusta automáticamente */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 20px;
+}
+
+/* Tarjeta individual de episodio */
+.episode-card {
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 15px;
+    display: flex; /* Usamos flex para separar el link de los controles */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.episode-link {
+    display: block;
+    color: var(--color-text-light);
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.episode-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ep-number {
+    color: var(--color-accent);
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.ep-title {
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+/* Icono de Play (triángulo) */
+.overlay-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 2.5em;
+    color: rgba(255, 255, 255, 0.6); /* Transparente para no ser molesto */
+    transition: color 0.3s;
+}
+
+.episode-link:hover .overlay-icon {
+    color: var(--color-accent); /* Resalta al pasar el ratón */
+}
+
+/* --- CONTROLES DE USUARIO (VISTO/RESEÑA) --- */
+.user-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mark-watched {
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #444;
+    color: var(--color-text-light);
+    transition: background-color 0.3s;
+}
+
+.mark-watched:hover {
+    background-color: #666;
+}
+
+/* Estilo para el botón VISTO */
+.mark-watched.watched {
+    background-color: #4CAF50; /* Verde para indicar visto */
+    color: white;
+    font-weight: 700;
+}
+
+.review-link {
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--color-secondary-accent);
+    color: white;
+    text-align: center;
+}
+
+.review-link:hover {
+    background-color: #d81b60;
+}
+
+/* style del buscador*/
+.search-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 200px;
+    transition: width 0.3s;
+}
+
+.search-input:focus {
+    width: 300px;
+    border-color: #ffcc00; /* Color temático de Shin-Chan */
+}
+
+.results-count {
+    font-size: 0.8rem;
+    color: #666;
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+}
+/*modal reseña*/
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+}
+.modal-content {
+    background: #222; padding: 20px; border-radius: 10px;
+    width: 90%; max-width: 500px; color: white;
+}
+#review-text {
+    width: 100%; height: 150px; margin: 15px 0;
+    background: #333; color: white; border: 1px solid #444;
+    padding: 10px; box-sizing: border-box;
+}
+.modal-buttons button {
+    padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 0 5px;
+}
+.overlay-icon {
+    display: none !important;
+}
